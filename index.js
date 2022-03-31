@@ -2,27 +2,21 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser'); 
 
-// let consolemethod =  (req, res, next) =>{
-//     console.log(req.method); 
-//     next();
-//     // next("Erro");
-// }
+app.use(bodyParser.urlencoded())
 
-let consoleBody =  (req, res, next) =>{
-    console.log(req.body); 
-    next();
-    // next("Erro");
-}
+app.get("/", (req, res) =>{
+    res.send("Hello World")
+})
 
-let hello =  (req, res) =>{
-    // console.log(req);
-    res.send("<h1> pega o server do pai </h1>")
-}
+app.get("/alunos", (req, res) =>{
 
-app.use ("/", bodyParser.json());
-app.use ("/", consoleBody)
+    let alunos = [{id: 0, nome: "DAVI"},
+    {id: 1, nome: "MARIA"},
+    {id: 2, nome:"DOLY"},
+    {id: 3, nome:"THOR"}]
 
-app.get("/", hello)
-app.post("/", hello)
+    res.json(JSON.stringify(alunos))
+
+})
 
 app.listen(3000, () => console.log("server rodando..."));
