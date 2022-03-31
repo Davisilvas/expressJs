@@ -8,7 +8,7 @@ const aluno = require("./routes/aluno");
 
 app.use(bodyParser.urlencoded())
 
-app.use ("/api", aluno)
+app.use ("/student", aluno)
 
 app.get("/", (req, res) =>{
     res.send("Hello World")
